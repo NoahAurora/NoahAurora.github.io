@@ -109,7 +109,7 @@ Group papers into `journal`, `conference`, and `preprint`. Each record contains 
         "type": "article-journal",
         "title": "Example paper",
         "author": [
-          ["Zhang", "Zaiyan"],
+          ["Zhang", "Fangzhou"],
           ["Li", "Jie"]
         ],
         "container-title": "Journal Name",
@@ -137,7 +137,7 @@ The page and citation generator share `citation`. Titles, author order, and year
 
 Set `display.venue` only when the display name differs from the formal citation venue; otherwise it defaults to `citation.container-title`. `venue_key` selects rank/IF data, `tags` is an array, and `links` defines the buttons.
 
-Write each author as a `[family, given]` pair, such as `["Zhang", "Zaiyan"]` or `["de la Cruz", "Juan Carlos"]`. Each pair must contain exactly two nonempty strings. Only leading/trailing whitespace is stripped; internal spaces, hyphens, case, and author order are preserved. Do not combine a name into one string or add `*`/`†` markers. The page displays given name followed by family name. The generator converts pairs to standard `{ "family": "Zhang", "given": "Zaiyan" }` objects for every citation export. Invalid pairs are rejected without guessing name parts.
+Write each author as a `[family, given]` pair, such as `["Zhang", "Fangzhou"]` or `["de la Cruz", "Juan Carlos"]`. Each pair must contain exactly two nonempty strings. Only leading/trailing whitespace is stripped; internal spaces, hyphens, case, and author order are preserved. Do not combine a name into one string or add `*`/`†` markers. The page displays given name followed by family name. The generator converts pairs to standard `{ "family": "Zhang", "given": "Fangzhou" }` objects for every citation export. Invalid pairs are rejected without guessing name parts.
 
 Positions in `display.author_roles` are 1-based: `equal_contribution` adds `†`, and `corresponding` adds `*`. The author matching `_config.yml`'s `author.citation_name` is underlined automatically. `display.layout: "compact"` selects an imageless card; omitting it selects a featured card. `display.visible: false` hides a paper while preserving its category, metadata, and generated citations.
 
@@ -317,14 +317,14 @@ Section headings example:
 ```yaml
 description: "Building AI for open-world Earth observation."
 description_zh: "构建面向开放世界地球观测的人工智能。"
-seo_title: "Zaiyan Zhang (张再筵) | Intelligent Earth Observation"
-seo_description: "Academic homepage of Zaiyan Zhang (张再筵), focusing on remote sensing image processing, open-world interpretation, multimodal foundation models, and AI agents for scientific discovery."
+seo_title: "Fangzhou Zhang (张方舟) | AI Infrastructure & Machine Learning Systems"
+seo_description: "Academic and engineering portfolio of Fangzhou Zhang, focusing on AI infrastructure, LLM inference and serving, AI for EDA, edge AI, and hardware-software co-design."
 
 author:
-  name: "Zaiyan Zhang"
-  name_zh: "张再筵"
+  name: "Fangzhou Zhang"
+  name_zh: "张方舟"
   citation_name:
-    given: "Zaiyan"
+    given: "Fangzhou"
     family: "Zhang"
   bio: "Wuhan University"
   bio_zh: "武汉大学"

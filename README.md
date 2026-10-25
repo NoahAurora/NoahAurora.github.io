@@ -1,6 +1,6 @@
-# 张方舟的个人学术与工程主页
+# Zhangfangzhou.github.io
 
-这是一个基于 [zzaiyan/zzaiyan.github.io](https://github.com/zzaiyan/zzaiyan.github.io) 二次开发的 Jekyll 个人主页，用于展示科研成果、工程项目、教育经历、荣誉、技术博客和简历。项目保留原仓库的 MIT 许可证与必要署名。
+这是张方舟的个人学术与工程主页，基于 Jekyll 构建，用于展示科研成果、工程项目、教育经历、荣誉、技术博客和简历。
 
 ## 当前功能
 
@@ -92,6 +92,6 @@ npm run citations:check
 - PhaseConeGNN 的公开 Paper / Code 链接（仅在真实可用后添加）。
 - LLM Serving Lab 的 GitHub、Demo 与 Benchmark 链接及经验证结果。
 
-## 许可证与署名
+## 许可证
 
-本项目继承原项目的 [MIT License](LICENSE)。页面页脚保留了对原开源主页的署名。
+项目使用 [MIT License](LICENSE)。

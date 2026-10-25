@@ -108,7 +108,7 @@
         "type": "article-journal",
         "title": "Example paper",
         "author": [
-          ["Zhang", "Zaiyan"],
+          ["Zhang", "Fangzhou"],
           ["Li", "Jie"]
         ],
         "container-title": "Journal Name",
@@ -136,7 +136,7 @@
 
 `display.venue` 仅在需要与正式文献名称不同的展示名时填写，默认使用 `citation.container-title`。`venue_key` 用于查询分区/IF，`tags` 为标签数组，`links` 为按钮列表。
 
-作者必须写成 `[姓, 名]` 二元数组，例如 `["Zhang", "Zaiyan"]`、`["de la Cruz", "Juan Carlos"]`。每项恰好包含两个非空字符串，只去除首尾空白，保留内部空格、连字符、大小写和署名顺序。不要把姓名拼为一个字符串，也不要混入 `*`、`†`。网页按“名 姓”展示；生成器将二元组转换为标准 `{ "family": "Zhang", "given": "Zaiyan" }`，所有引用导出仍为标准 CSL 作者结构。格式不合法时直接报错，不猜测姓和名。
+作者必须写成 `[姓, 名]` 二元数组，例如 `["Zhang", "Fangzhou"]`、`["de la Cruz", "Juan Carlos"]`。每项恰好包含两个非空字符串，只去除首尾空白，保留内部空格、连字符、大小写和署名顺序。不要把姓名拼为一个字符串，也不要混入 `*`、`†`。网页按“名 姓”展示；生成器将二元组转换为标准 `{ "family": "Zhang", "given": "Fangzhou" }`，所有引用导出仍为标准 CSL 作者结构。格式不合法时直接报错，不猜测姓和名。
 
 `display.author_roles` 使用从 1 开始的作者位置：`equal_contribution` 添加 `†`，`corresponding` 添加 `*`。与 `_config.yml` 中 `author.citation_name` 匹配的作者自动加下划线。`display.layout: "compact"` 显示无图紧凑卡片，省略时为带图卡片；`display.visible: false` 隐藏论文，但保留分类、元数据和生成的引用。
 
@@ -316,14 +316,14 @@ English content here.
 ```yaml
 description: "Building AI for open-world Earth observation."
 description_zh: "构建面向开放世界地球观测的人工智能。"
-seo_title: "Zaiyan Zhang (张再筵) | Intelligent Earth Observation"
-seo_description: "Academic homepage of Zaiyan Zhang (张再筵), focusing on remote sensing image processing, open-world interpretation, multimodal foundation models, and AI agents for scientific discovery."
+seo_title: "Fangzhou Zhang (张方舟) | AI Infrastructure & Machine Learning Systems"
+seo_description: "Academic and engineering portfolio of Fangzhou Zhang, focusing on AI infrastructure, LLM inference and serving, AI for EDA, edge AI, and hardware-software co-design."
 
 author:
-  name: "Zaiyan Zhang"
-  name_zh: "张再筵"
+  name: "Fangzhou Zhang"
+  name_zh: "张方舟"
   citation_name:
-    given: "Zaiyan"
+    given: "Fangzhou"
     family: "Zhang"
   bio: "Wuhan University"
   bio_zh: "武汉大学"
