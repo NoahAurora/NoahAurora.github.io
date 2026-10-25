@@ -1,43 +1,96 @@
-# Zaiyan Zhang (张再筵)
+# 张方舟的个人学术与工程主页
 
-*"Building AI for open-world Earth observation."*
+这是一个基于 [zzaiyan/zzaiyan.github.io](https://github.com/zzaiyan/zzaiyan.github.io) 二次开发的 Jekyll 个人主页，用于展示科研成果、工程项目、教育经历、荣誉、技术博客和简历。项目保留原仓库的 MIT 许可证与必要署名。
 
-[![Website](https://img.shields.io/badge/Website-zzaiyan.com-orange?style=flat-square\&logo=googlechrome\&logoColor=white)](https://zzaiyan.com)
-[![Google Scholar](https://img.shields.io/badge/Google-Scholar-4285F4?style=flat-square\&logo=googlescholar\&logoColor=white)](https://scholar.google.com/citations?user=ZpxXejIAAAAJ&hl=en)
-[![Email](https://img.shields.io/badge/Email-1%40zzaiyan.com-EA4335?style=flat-square\&logo=gmail\&logoColor=white)](mailto:1@zzaiyan.com)
+## 当前功能
 
----
+- 中英文切换，语言偏好保存在浏览器本地。
+- 深色/浅色模式，支持系统主题并可手动切换。
+- 响应式单页布局，适配桌面端和移动端。
+- Research 与 Engineering Projects 独立展示。
+- 论文引用信息由结构化数据自动生成。
+- GitHub Pages Actions 构建与部署流程。
 
-这是我的学术个人主页源码，基于 Jekyll 构建，参考了 [Yi Ren](https://rayeren.github.io/) 等多人的源代码，并加入了一系列新特性。主站部署于 [zzaiyan.com](https://zzaiyan.com)，同时发布至 [GitHub Pages](https://zzaiyan.github.io) 作为镜像。
+## 内容维护
 
-## ✨ 特性
+主要内容均通过配置或数据文件维护：
 
-- **数据驱动**：论文、新闻、教育经历、荣誉等均通过 `_data/` 目录下的 JSON/YAML 文件管理，无需直接编辑 HTML
-- **多格式引用**：支持 BibTeX、RIS、CSL-JSON、IEEE、APA 和 GB/T 7714 的展示、复制与下载
-- **双语切换**：支持中英文一键切换，默认英文
-- **深色/浅色主题**：内置主题切换，默认浅色
-- **响应式布局**：移动端友好，导航栏自适应折叠
-- **统一统计刷新**：部署时更新 Google Scholar 引用量和 GitHub stars，快照统一存放于 `_data/metrics/`，本地可运行 `npm run data:refresh` 或 `npm run scholar:fetch`
+| 内容 | 文件 |
+| --- | --- |
+| 个人简介与网站设置 | `_config.yml`、`_pages/about.md` |
+| 导航 | `_data/navigation.yml` |
+| 动态 | `_data/news.json` |
+| 论文 | `_data/publications.json` |
+| 工程项目 | `_data/engineering_projects.json` |
+| 教育经历 | `_data/education.json` |
+| 荣誉奖项 | `_data/honors.json` |
 
-## 📖 文档
+没有真实链接的项目入口会显示 `TBD`，不会跳转到虚构地址。LLM Serving Lab 被明确标记为 `In Progress`，目前不包含未经验证的性能结果。
 
-| 语言 | 链接 |
-|------|------|
-| English | [docs/guide.md](docs/guide.md) |
-| 中文 | [docs/guide_zh.md](docs/guide_zh.md) |
+## 本地运行
 
-## 🛠️ 快速开始
+推荐版本：Node.js 24、Ruby 3.3、Bundler 2.5+。
 
-```bash
-# 安装依赖
-bundle install
+```powershell
 npm ci
-
-# 生成引用数据并启动本地预览
-npm run serve
+bundle install
+npm run data:build
+bundle exec jekyll serve --host 127.0.0.1 --port 4000
 ```
 
-编辑 `_config.yml` 填写个人信息。论文只维护 `_data/publications.json`，作者按 `[姓, 名]` 二元数组填写；`_data/generated/` 为自动生成的引用格式，`_data/metrics/` 为在线统计快照。
+浏览器访问 <http://127.0.0.1:4000/>。
 
+服务运行时可执行真实浏览器验收：
 
-本地获取 Scholar 兜底快照：安装 Python 3（推荐 3.12），Linux/macOS 运行 `bash scripts/fetch-google-scholar.sh`，Windows 双击 `scripts\fetch-google-scholar.bat`。脚本自动准备独立 Python 环境，将结果写入 `_data/metrics/google_scholar.json`；检查后提交推送该文件即可更新远程兜底。
+```powershell
+npm run qa:browser
+```
+
+该脚本使用隔离的 Chrome 配置验证 390 px 移动视口、中英文切换、深色模式、关键栏目与横向溢出，不读取日常浏览器资料。
+
+### 当前 Windows 环境
+
+本机使用的便携 Ruby 位于 `D:\Projects\.tools\ruby-3.3.12\rubyinstaller-3.3.12-1-x64`，Gem 安装在项目的 `vendor/bundle`；npm 缓存位于 `D:\Projects\.npm-cache`。这些依赖目录已被 Git 忽略，不会提交或部署。
+
+若 PowerShell 尚未识别便携 Ruby，可在当前终端临时执行：
+
+```powershell
+$rubyRoot = "D:\Projects\.tools\ruby-3.3.12\rubyinstaller-3.3.12-1-x64"
+$env:Path = "$rubyRoot\bin;$rubyRoot\msys64\ucrt64\bin;$rubyRoot\msys64\usr\bin;$env:Path"
+```
+
+这只影响当前终端，不修改系统 PATH。
+
+## 修改论文数据
+
+编辑 `_data/publications.json` 后运行：
+
+```powershell
+npm run data:build
+npm run citations:check
+```
+
+生成结果保存在 `_data/generated/citations.json`。PhaseConeGNN 当前按“审稿中稿件”展示，不应在录用前改成已发表论文。
+
+## 部署到 GitHub Pages
+
+部署前需要确认 GitHub 用户名和仓库名，然后完成以下步骤：
+
+1. 在 `_config.yml` 填写 `url` 与 `repository`。
+2. 若仓库名是 `<username>.github.io`，保持 `baseurl: ""`；其他仓库由 Actions 自动传入 Pages base path。
+3. 在 GitHub 仓库的 **Settings → Pages → Build and deployment** 中选择 **GitHub Actions**。
+4. 将本地 `main` 分支推送到本人仓库。
+
+当前尚未执行 GitHub 登录、创建远程仓库、推送或公开发布；这些操作需要网站所有者确认后再进行。
+
+## 待补充信息
+
+- 公开邮箱。
+- GitHub 用户名及项目仓库链接。
+- 最终公开版 CV/PDF。
+- PhaseConeGNN 的公开 Paper / Code 链接（仅在真实可用后添加）。
+- LLM Serving Lab 的 GitHub、Demo 与 Benchmark 链接及经验证结果。
+
+## 许可证与署名
+
+本项目继承原项目的 [MIT License](LICENSE)。页面页脚保留了对原开源主页的署名。
