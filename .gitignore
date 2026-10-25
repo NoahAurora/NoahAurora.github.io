@@ -1,0 +1,16 @@
+_site/
+.jekyll-metadata
+node_modules/
+push.sh
+.DS_Store
+.bundle/
+.sass-cache/
+vendor/bundle/
+__pycache__/
+*.py[cod]
+.venv-scholar/
+
+# AI config files
+.claude/
+.codex/
+.copilot/

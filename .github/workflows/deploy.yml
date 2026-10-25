@@ -1,0 +1,227 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-scholar.txt
+
+      - name: Install Scholar dependencies
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python -m pip install -r scripts/requirements-scholar.txt
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build and verify citation data
+        run: |
+          npm ci
+          npm run data:build
+          npm run citations:check
+
+      - name: Refresh site data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run data:refresh
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        env:
+          JEKYLL_ENV: production
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bundle exec jekyll build \
+            --baseurl "${{ steps.pages.outputs.base_path }}" \
+            --trace
+
+      - name: Record deployment version
+        run: |
+          printf '{"commit":"%s","built_at":"%s"}\n' \
+            "$GITHUB_SHA" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+            > _site/deploy-version.json
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+
+      - name: Upload SSH server artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: ./_site
+          include-hidden-files: true
+          retention-days: 1
+
+  deploy-pages:
+    name: Deploy GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-server:
+    name: Deploy to SSH Server
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    environment:
+      name: server-production
+      url: ${{ vars.SSH_SITE_URL }}
+    env:
+      SSH_DEPLOY_PATH: ${{ vars.SSH_DEPLOY_PATH }}
+      SSH_SITE_URL: ${{ vars.SSH_SITE_URL }}
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: ./site
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          : "${SSH_PRIVATE_KEY:?SSH_PRIVATE_KEY is not configured}"
+          : "${SSH_KNOWN_HOSTS:?SSH_KNOWN_HOSTS is not configured}"
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/deploy_key"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/deploy_key" "$HOME/.ssh/known_hosts"
+
+      - name: Upload and activate release
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          set -euo pipefail
+          : "${SSH_HOST:?SSH_HOST is not configured}"
+          : "${SSH_USER:?SSH_USER is not configured}"
+          : "${SSH_DEPLOY_PATH:?SSH_DEPLOY_PATH is not configured}"
+
+          port="${SSH_PORT:-22}"
+          remote="${SSH_USER}@${SSH_HOST}"
+          release="${SSH_DEPLOY_PATH}/releases/${GITHUB_SHA}"
+          ssh_args=(
+            ssh
+            -i "$HOME/.ssh/deploy_key"
+            -p "$port"
+            -o BatchMode=yes
+            -o ConnectTimeout=10
+            -o ServerAliveInterval=15
+            -o ServerAliveCountMax=3
+            -o StrictHostKeyChecking=yes
+          )
+
+          "${ssh_args[@]}" "$remote" "mkdir -p '$release'"
+          RSYNC_RSH="ssh -i $HOME/.ssh/deploy_key -p $port -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes" \
+            rsync -az --delete --delay-updates --link-dest="${SSH_DEPLOY_PATH}/current" ./site/ "$remote:$release/"
+
+          "${ssh_args[@]}" "$remote" bash -s -- \
+            "$release" "$SSH_DEPLOY_PATH" "$GITHUB_SHA" <<'REMOTE_SCRIPT'
+          set -euo pipefail
+          release="$1"
+          remote_base="$2"
+          commit_sha="$3"
+          current="${remote_base}/current"
+          next="${remote_base}/current.next"
+
+          test -s "${release}/index.html"
+          test -s "${release}/deploy-version.json"
+
+          if [[ -e "$current" && ! -L "$current" ]]; then
+            if [[ -d "$current" ]]; then
+              rmdir "$current" || {
+                echo "$current must be empty before it can become a release symlink" >&2
+                exit 1
+              }
+            else
+              echo "$current exists but is not a directory or symlink" >&2
+              exit 1
+            fi
+          fi
+
+          if [[ -e "$next" && ! -L "$next" ]]; then
+            echo "$next exists but is not a symlink" >&2
+            exit 1
+          fi
+
+          ln -sfn "$release" "$next"
+          mv -Tf "$next" "$current"
+
+          test -L "$current"
+          test -s "${current}/index.html"
+          grep -Fq "\"commit\":\"${commit_sha}\"" \
+            "${current}/deploy-version.json"
+          REMOTE_SCRIPT
+
+      - name: Verify public deployment
+        run: |
+          set -euo pipefail
+          : "${SSH_SITE_URL:?SSH_SITE_URL is not configured}"
+          expected="\"commit\":\"${GITHUB_SHA}\""
+          site_url="${SSH_SITE_URL%/}"
+
+          for attempt in {1..10}; do
+            response="$(curl -fsS --connect-timeout 5 --max-time 15 \
+              "${site_url}/deploy-version.json?sha=${GITHUB_SHA}" || true)"
+            if grep -Fq "$expected" <<< "$response"; then
+              exit 0
+            fi
+            sleep 3
+          done
+
+          echo "Public deployment did not report commit ${GITHUB_SHA}" >&2
+          exit 1
