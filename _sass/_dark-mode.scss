@@ -75,6 +75,42 @@ html[data-theme="dark"] {
     }
   }
 
+  .project-card,
+  .placeholder-panel,
+  .contact-panel {
+    border-color: #333;
+    background: rgba(32, 34, 37, 0.78);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-card__eyebrow,
+  .project-card__summary,
+  .project-card__highlights,
+  .pub-status,
+  .pending-field {
+    color: #b5bac1;
+  }
+
+  .project-card__tech span {
+    color: #c3c7cb;
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  .project-card__links {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .project-link {
+    color: #9cc8ff !important;
+    background: rgba(122, 176, 230, 0.1);
+  }
+
+  .project-link--disabled,
+  .pub-btn--disabled {
+    color: #8d949c !important;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
   .pub-btn {
     color: #7ab0e6 !important;
     background: rgba(122, 176, 230, 0.1);

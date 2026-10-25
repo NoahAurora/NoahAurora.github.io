@@ -1,0 +1,39 @@
+<div class="project-grid">
+{% for project in site.data.engineering_projects %}
+  <article class="project-card">
+    <div class="project-card__header">
+      <div>
+        <span class="project-card__eyebrow"><span class="lang-en">{{ project.category }}</span><span class="lang-zh">{{ project.category_zh | default: project.category }}</span></span>
+        <h2><span class="lang-en">{{ project.title }}</span><span class="lang-zh">{{ project.title_zh | default: project.title }}</span></h2>
+      </div>
+      <span class="project-status project-status--{{ project.status | downcase | replace: ' ', '-' }}"><span class="lang-en">{{ project.status }}</span><span class="lang-zh">{{ project.status_zh | default: project.status }}</span></span>
+    </div>
+
+    <p class="lang-en project-card__summary">{{ project.summary }}</p>
+    <p class="lang-zh project-card__summary">{{ project.summary_zh | default: project.summary }}</p>
+
+    <ul class="lang-en project-card__highlights">
+      {% for item in project.highlights %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+    <ul class="lang-zh project-card__highlights">
+      {% for item in project.highlights_zh %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+
+    <div class="project-card__tech">
+      {% for item in project.tech %}<span>{{ item }}</span>{% endfor %}
+    </div>
+
+    <div class="project-card__links" aria-label="Project links">
+      {% assign link_names = "GitHub,Paper,Demo,Benchmark" | split: "," %}
+      {% for expected_name in link_names %}
+        {% assign matching_link = project.links | where: "name", expected_name | first %}
+        {% if matching_link %}
+          <a class="project-link" href="{{ matching_link.url }}">{{ expected_name }}</a>
+        {% else %}
+          <span class="project-link project-link--disabled" title="Link not available yet">{{ expected_name }} <small>TBD</small></span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </article>
+{% endfor %}
+</div>

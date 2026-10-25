@@ -4,11 +4,15 @@ endif %}
 
 <div itemscope itemtype="http://schema.org/Person" class="profile_box">
   <div class="author__avatar">
+    {% if author.avatar %}
     <img
       src="{{ author.avatar | relative_url }}"
       class="author__avatar"
       alt="{{ author.name }}"
     />
+    {% else %}
+    <div class="author__avatar-placeholder" role="img" aria-label="{{ author.name }}">{{ author.initials | default: "FZ" }}</div>
+    {% endif %}
   </div>
 
   <div class="author__content">

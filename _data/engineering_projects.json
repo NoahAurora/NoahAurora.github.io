@@ -1,0 +1,65 @@
+[
+  {
+    "id": "llm-serving-lab",
+    "title": "LLM Serving Lab",
+    "title_zh": "LLM 推理服务实验室",
+    "status": "In Progress",
+    "status_zh": "建设中",
+    "category": "LLM Inference & Serving",
+    "category_zh": "大模型推理与服务",
+    "summary": "A reproducible systems lab for studying large-language-model inference serving and performance behavior on a single RTX 4090 24 GB GPU.",
+    "summary_zh": "面向单卡 RTX 4090 24 GB 环境的大模型推理服务实验平台，用于构建可复现的系统实验与性能分析流程。",
+    "highlights": [
+      "Building a vLLM-based benchmark workflow for TTFT, TPOT, throughput and concurrent serving.",
+      "Planning controlled studies of KV Cache behavior and serving configurations; no benchmark result is claimed yet."
+    ],
+    "highlights_zh": [
+      "基于 vLLM 搭建 TTFT、TPOT、吞吐量与并发服务的 Benchmark 流程。",
+      "规划 KV Cache 行为及服务配置的对照实验；项目尚在建设中，暂不宣称任何性能结论。"
+    ],
+    "tech": ["Python", "PyTorch", "vLLM", "RTX 4090 24 GB"],
+    "links": []
+  },
+  {
+    "id": "haixin-edge-ai",
+    "title": "HaiXin Edge AI",
+    "title_zh": "海芯端侧 AI",
+    "status": "Active",
+    "status_zh": "持续开发",
+    "category": "Edge AI & Hardware-Software Co-design",
+    "category_zh": "端侧 AI 与软硬件协同",
+    "summary": "An edge-AI inference acceleration project built around an FPGA, a RISC-V processor and a tensor engine.",
+    "summary_zh": "围绕 FPGA、RISC-V 处理器与 Tensor Engine 开展的端侧 AI 推理加速项目。",
+    "highlights": [
+      "Adapted convolution, depthwise convolution and pooling operators for the target inference stack.",
+      "Participated in preprocessing, postprocessing, deployment debugging and hardware-software integration."
+    ],
+    "highlights_zh": [
+      "参与卷积、深度卷积与池化算子适配，衔接模型算子与目标推理链路。",
+      "参与预处理、后处理、部署调试及软硬件联调，推进端侧推理加速落地。"
+    ],
+    "tech": ["FPGA", "RISC-V", "Tensor Engine", "Operator Adaptation"],
+    "links": []
+  },
+  {
+    "id": "ship-speed-optimization",
+    "title": "Ship Speed Optimization",
+    "title_zh": "船舶航速优化",
+    "status": "Completed",
+    "status_zh": "已完成",
+    "category": "Machine Learning Application",
+    "category_zh": "机器学习应用",
+    "summary": "A machine-learning system for vessel fuel-consumption prediction and multi-objective speed optimization using fused operational data.",
+    "summary_zh": "面向船舶油耗预测与多目标航速优化的机器学习系统，融合多源航行数据并提供 Web 端应用。",
+    "highlights": [
+      "Built a LightGBM-based fuel-consumption prediction pipeline with multi-source data fusion.",
+      "Developed a Flask and Vue application to connect model inference with optimization workflows."
+    ],
+    "highlights_zh": [
+      "基于 LightGBM 构建油耗预测流程，并完成多源数据融合。",
+      "使用 Flask 与 Vue 开发系统，将模型推理与多目标优化流程连接起来。"
+    ],
+    "tech": ["LightGBM", "Multi-objective Optimization", "Flask", "Vue"],
+    "links": []
+  }
+]

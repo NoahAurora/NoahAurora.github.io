@@ -1,79 +1,41 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
-
-# Site Settings
-title: "Zaiyan Zhang"
-url: "https://zzaiyan.com"
+# Site identity. Fill url/repository only after the GitHub username is confirmed.
+title: "Fangzhou Zhang"
+url: ""
 baseurl: ""
-description: "Building AI for open-world Earth observation."
-description_zh: "构建面向开放世界地球观测的人工智能。"
-seo_title: "Zaiyan Zhang (张再筵) | Intelligent Earth Observation"
-seo_description: "Academic homepage of Zaiyan Zhang (张再筵), focusing on remote sensing image processing, open-world interpretation, multimodal foundation models, and AI agents for scientific discovery."
-repository: "zzaiyan/zzaiyan.github.io"
-google_scholar:
-  id: "ZpxXejIAAAAJ"
+repository: ""
+description: "AI Infrastructure, machine learning systems, and hardware-software co-design."
+description_zh: "面向 AI Infrastructure、机器学习系统与软硬件协同设计。"
+seo_title: "Fangzhou Zhang (张方舟) | AI Infrastructure & Machine Learning Systems"
+seo_description: "Academic and engineering portfolio of Fangzhou Zhang, focusing on AI infrastructure, LLM inference and serving, AI for EDA, edge AI, and hardware-software co-design."
 
+# Intentionally disabled until the owner provides real analytics settings.
+google_analytics_id:
+google_site_verification:
+bing_site_verification:
+baidu_site_verification:
 visitor_trace:
-  base_url: "https://stats.zzaiyan.com"
-  site_id: "obpufw6r5ffbi43m"
+  base_url:
+  site_id:
 
-# google analytics
-google_analytics_id: # get google_analytics_id from https://analytics.google.com/analytics/
-
-# SEO Related
-google_site_verification: # get google_site_verification from https://search.google.com/search-console/about
-bing_site_verification: # get bing_site_verification from https://www.bing.com/webmasters/about
-baidu_site_verification: # get baidu_site_verification from https://ziyuan.baidu.com/login/index?u=/site/index
-
-# Site Author
 author:
-  name: "Zaiyan Zhang (张再筵)"
-  name_zh: "张再筵"
+  name: "Fangzhou Zhang"
+  name_zh: "张方舟"
   citation_name:
-    given: "Zaiyan"
+    given: "Fangzhou"
     family: "Zhang"
-  avatar: "images/profile/avatar.webp"
-  bio: "Wuhan University · Shanghai AI Lab"
-  bio_zh: "武汉大学 · 上海 AI Lab"
-  employer:
-  pubmed:
-  googlescholar: "https://scholar.google.com/citations?user=ZpxXejIAAAAJ&hl=en"
-  blog: "https://b.zzaiyan.com"
-  email: "1@zzaiyan.com"
-  researchgate: "https://www.researchgate.net/profile/Zaiyan-Zhang"
-  uri:
-  bitbucket:
-  codepen:
-  dribbble:
-  flickr:
-  facebook:
-  foursquare:
-  github: "zzaiyan"
-  google_plus:
-  keybase:
-  instagram:
-  impactstory: # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
-  lastfm:
-  linkedin: # e.g., "linkedin username"
-  dblp: # e.g., "https://dblp.org/pid/xx/xxxx.html"
-  orcid: # e.g., "https://orcid.org/xxxx"
-  pinterest:
-  soundcloud:
-  stackoverflow: # http://stackoverflow.com/users/123456/username
-  steam:
-  tumblr:
-  twitter:
-  vine:
-  weibo:
-  xing:
-  youtube:
-  wikipedia:
+  initials: "FZ"
+  bio: "Incoming Graduate Student at USTC · Network Engineering at DMU"
+  bio_zh: "中国科学技术大学准研究生 · 大连海事大学网络工程"
+  location: "China"
+  location_zh: "中国"
+  email:
+  github:
+  googlescholar:
+  linkedin:
+  dblp:
+  orcid:
+  blog:
 
-# Reading Files
 include:
   - .htaccess
   - _pages
@@ -93,7 +55,7 @@ exclude:
   - Gemfile
   - Gruntfile.js
   - LICENSE
-  - README
+  - README.md
   - Rakefile
   - assets/js/_main.js
   - assets/js/plugins
@@ -101,24 +63,25 @@ exclude:
   - config
   - gulpfile.js
   - log
+  - assets/pubs
+  - images/institutions
+  - images/profile
+  - images/publications
+  - images/site
   - node_modules
   - package.json
   - tmp
   - vendor
 keep_files:
   - .git
-  - .svn
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-# Conversion
 markdown: kramdown
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
-
-# Markdown Processing
 kramdown:
   input: GFM
   hard_wrap: false
@@ -129,9 +92,7 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-# Defaults
 defaults:
-  # _pages
   - scope:
       path: ""
       type: pages
@@ -139,27 +100,22 @@ defaults:
       layout: default
       author_profile: true
 
-# Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
-# Outputting
 permalink: /:categories/:title/
-timezone: Asia/Shanghai # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Shanghai
 
-# Plugins
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jekyll-redirect-from
-# mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
-

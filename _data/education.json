@@ -1,26 +1,28 @@
 [
-    {
-        "school": "Wuhan University | 武汉大学",
-        "url": "https://www.whu.edu.cn/",
-        "image": "images/institutions/whu.webp",
-        "degree": "Master",
-        "degree_zh": "工学硕士",
-        "major": "Photogrammetry and Remote Sensing",
-        "major_zh": "摄影测量与遥感",
-        "period": "2025.09 - Present",
-        "advisors": "Prof. [Qiangqiang Yuan](https://scholar.google.com/citations?user=aItnA-sAAAAJ), A.P. [Jie Li](https://scholar.google.com/citations?user=W4VvnDMAAAAJ) and Prof. [Liangpei Zhang](https://scholar.google.com/citations?user=yFEl8hcAAAAJ)",
-        "advisors_zh": "[袁强强](https://scholar.google.com/citations?user=aItnA-sAAAAJ) 教授、[李杰](https://scholar.google.com/citations?user=W4VvnDMAAAAJ) 副教授 与 [张良培](https://scholar.google.com/citations?user=yFEl8hcAAAAJ) 教授"
-    },
-    {
-        "school": "China University of Geosciences | 中国地质大学",
-        "url": "https://www.cug.edu.cn/",
-        "image": "images/institutions/cug.webp",
-        "degree": "Bachelor",
-        "degree_zh": "工学学士",
-        "major": "Data Science and Big Data Technology",
-        "major_zh": "数据科学与大数据技术",
-        "period": "2021.09 - 2025.06",
-        "advisors": "A.P. [Jining Yan](https://scholar.google.com/citations?user=iYTHxQcAAAAJ) and Prof. [Lizhe Wang](https://scholar.google.com/citations?user=F6QzRGAAAAAJ)",
-        "advisors_zh": "[阎继宁](https://scholar.google.com/citations?user=iYTHxQcAAAAJ) 副教授 与 [王力哲](https://scholar.google.com/citations?user=F6QzRGAAAAAJ) 教授"
-    }
+  {
+    "school": "University of Science and Technology of China",
+    "school_zh": "中国科学技术大学",
+    "url": "https://www.ustc.edu.cn/",
+    "monogram": "USTC",
+    "degree": "Incoming Graduate Student (Class of 2027)",
+    "degree_zh": "2027 级准研究生",
+    "major": "School of Software Engineering",
+    "major_zh": "软件学院",
+    "period": "2027 - TBD",
+    "details": "Admitted through the postgraduate recommendation pathway.",
+    "details_zh": "已获得推免资格并保研至中国科学技术大学。"
+  },
+  {
+    "school": "Dalian Maritime University",
+    "school_zh": "大连海事大学",
+    "url": "https://www.dlmu.edu.cn/",
+    "monogram": "DMU",
+    "degree": "Bachelor of Engineering",
+    "degree_zh": "工学学士（预计）",
+    "major": "Network Engineering",
+    "major_zh": "网络工程",
+    "period": "2023 - 2027 (Expected)",
+    "details": "GPA 4.16/5.0 · Rank 3/66 · Top 5%",
+    "details_zh": "GPA 4.16/5.0 · 专业排名 3/66 · 前 5%"
+  }
 ]

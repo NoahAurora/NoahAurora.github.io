@@ -13,4 +13,6 @@ __pycache__/
 # AI config files
 .claude/
 .codex/
+.qa-browser-profile-*/
+qa-*.png
 .copilot/
