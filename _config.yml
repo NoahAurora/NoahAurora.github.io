@@ -5,7 +5,7 @@ baseurl: ""
 repository: ""
 description: "AI Infrastructure, machine learning systems, and hardware-software co-design."
 description_zh: "面向 AI Infrastructure、机器学习系统与软硬件协同设计。"
-seo_title: "Fangzhou Zhang (张方舟) | AI Infrastructure & Machine Learning Systems"
+seo_title: "Zhangfangzhou.github.io | Fangzhou Zhang (张方舟)"
 seo_description: "Academic and engineering portfolio of Fangzhou Zhang, focusing on AI infrastructure, LLM inference and serving, AI for EDA, edge AI, and hardware-software co-design."
 
 # Intentionally disabled until the owner provides real analytics settings.
