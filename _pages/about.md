@@ -21,6 +21,8 @@ redirect_from:
 
 👋 Hi, I am **Fangzhou Zhang**, an incoming 2027 graduate student at the School of Software Engineering, University of Science and Technology of China. I am currently completing a B.E. in Network Engineering at Dalian Maritime University, with a GPA of 4.16/5.0 and a rank of 3/66 (top 5%).
 
+During my undergraduate studies, I conducted **AI for EDA** research in the TSMC research community at Dalian Maritime University under the supervision of Prof. [Shikai Guo](https://ist.dlmu.edu.cn/info/1287/6768.htm).
+
 🔍 I work at the intersection of AI systems and efficient computing:
 
 - **AI Infrastructure / Machine Learning Systems**: inference engines, serving systems and performance analysis.
@@ -35,6 +37,8 @@ My current priority is an **AI Infra / systems engineering internship**, especia
 <div class="lang-zh" markdown="1">
 
 👋 你好，我是**张方舟**，已推免至中国科学技术大学软件学院，将作为 2027 级研究生入学。目前就读于大连海事大学网络工程专业，GPA 4.16/5.0，专业排名 3/66（前 5%）。
+
+本科期间，我曾在大连海事大学 **TSMC 学社**跟随[郭世凯老师](https://ist.dlmu.edu.cn/info/1287/6768.htm)开展 **AI for EDA** 方向研究。
 
 🔍 我的研究与工程兴趣集中在 AI 系统与高效计算交叉方向：
 
@@ -68,6 +72,10 @@ My current priority is an **AI Infra / systems engineering internship**, especia
 
 # <span class="lang-en">Research & Publications</span><span class="lang-zh">科研与论文</span>
 {: #research}
+
+## <span class="lang-en">Research Experience</span><span class="lang-zh">科研经历</span>
+
+{% include research-experience.html %}
 
 {% include publications.html %}
 

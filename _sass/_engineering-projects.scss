@@ -9,6 +9,7 @@
 }
 
 .project-card,
+.research-experience-card,
 .placeholder-panel,
 .contact-panel {
   border: 1px solid rgba($info-color, 0.14);
@@ -31,6 +32,48 @@
     margin: 0.15rem 0 0;
     font-size: 1.12rem;
   }
+}
+
+.research-experience-card {
+  margin-bottom: 1.25rem;
+  padding: 1.2rem 1.25rem;
+
+  h3 {
+    margin: 0.12rem 0 0;
+    font-size: 1.08rem;
+  }
+
+  p {
+    margin: 0.55rem 0 0;
+  }
+}
+
+.research-experience-card__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.research-experience-card__role,
+.research-experience-card__period {
+  color: $gray;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.research-experience-card__period {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.research-experience-card__advisor a {
+  font-weight: 600;
+}
+
+.research-experience-card__relation {
+  color: $gray;
+  font-size: 0.88rem;
 }
 
 .project-card__header {
@@ -156,6 +199,15 @@
 @include breakpoint(max-width $small) {
   .project-card__header {
     display: block;
+  }
+
+  .research-experience-card__heading {
+    display: block;
+  }
+
+  .research-experience-card__period {
+    display: inline-block;
+    margin-top: 0.35rem;
   }
 
   .project-status {

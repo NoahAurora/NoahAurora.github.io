@@ -1,0 +1,18 @@
+[
+  {
+    "organization": "TSMC Research Community, Dalian Maritime University",
+    "organization_zh": "大连海事大学 TSMC 学社",
+    "role": "Undergraduate Researcher",
+    "role_zh": "本科生科研成员",
+    "period": "During undergraduate studies",
+    "period_zh": "本科期间",
+    "advisor": "Prof. Shikai Guo",
+    "advisor_zh": "郭世凯教授",
+    "advisor_url": "https://ist.dlmu.edu.cn/info/1287/6768.htm",
+    "summary": "Conducted AI for EDA research under the supervision of Prof. Shikai Guo, with a focus on learning-based analysis of logic circuits and equivalent-gate identification.",
+    "summary_zh": "在郭世凯老师指导下开展 AI for EDA 研究，重点关注基于学习方法的逻辑电路分析与等效门识别。",
+    "relation": "Related research: PhaseConeGNN, a phase-aware logic-cone GNN for equivalent-gate identification.",
+    "relation_zh": "相关研究：PhaseConeGNN——面向等效门识别的相位感知逻辑锥图神经网络。",
+    "tags": ["AI for EDA", "Graph Neural Networks", "Logic Circuits", "Equivalent-Gate Identification"]
+  }
+]

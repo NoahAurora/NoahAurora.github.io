@@ -21,6 +21,7 @@
 | 导航 | `_data/navigation.yml` |
 | 动态 | `_data/news.json` |
 | 论文 | `_data/publications.json` |
+| 科研经历 | `_data/research_experience.json` |
 | 工程项目 | `_data/engineering_projects.json` |
 | 教育经历 | `_data/education.json` |
 | 荣誉奖项 | `_data/honors.json` |

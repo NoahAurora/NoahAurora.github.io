@@ -76,6 +76,7 @@ html[data-theme="dark"] {
   }
 
   .project-card,
+  .research-experience-card,
   .placeholder-panel,
   .contact-panel {
     border-color: #333;
@@ -84,6 +85,9 @@ html[data-theme="dark"] {
   }
 
   .project-card__eyebrow,
+  .research-experience-card__role,
+  .research-experience-card__period,
+  .research-experience-card__relation,
   .project-card__summary,
   .project-card__highlights,
   .pub-status,

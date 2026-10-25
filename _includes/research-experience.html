@@ -1,0 +1,18 @@
+{% for item in site.data.research_experience %}
+<article class="research-experience-card">
+  <div class="research-experience-card__heading">
+    <div>
+      <span class="research-experience-card__role"><span class="lang-en">{{ item.role }}</span><span class="lang-zh">{{ item.role_zh | default: item.role }}</span></span>
+      <h3><span class="lang-en">{{ item.organization }}</span><span class="lang-zh">{{ item.organization_zh | default: item.organization }}</span></h3>
+    </div>
+    <span class="research-experience-card__period"><span class="lang-en">{{ item.period }}</span><span class="lang-zh">{{ item.period_zh | default: item.period }}</span></span>
+  </div>
+  <p class="research-experience-card__advisor"><span class="lang-en">Advisor: </span><span class="lang-zh">指导教师：</span><a href="{{ item.advisor_url }}"><span class="lang-en">{{ item.advisor }}</span><span class="lang-zh">{{ item.advisor_zh | default: item.advisor }}</span></a></p>
+  <p class="lang-en">{{ item.summary }}</p>
+  <p class="lang-zh">{{ item.summary_zh | default: item.summary }}</p>
+  <p class="research-experience-card__relation"><span class="lang-en">{{ item.relation }}</span><span class="lang-zh">{{ item.relation_zh | default: item.relation }}</span></p>
+  <div class="project-card__tech">
+    {% for tag in item.tags %}<span>{{ tag }}</span>{% endfor %}
+  </div>
+</article>
+{% endfor %}
